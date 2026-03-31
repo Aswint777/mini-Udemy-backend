@@ -70,9 +70,9 @@ export const userSignUpPost = async (
     res.status(201).json({
       message: "OTP sent successfully",
       user: {
-        id: userData._id,
-        name: userData.name,
-        email: userData.email,
+        id: userData?._id,
+        name: userData?.name,
+        email: userData?.email,
       },
     });
   } catch (error) {
@@ -97,10 +97,10 @@ export const otpVerifyPost = async (
       return;
     }
     const newUser = await User.create({
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      role: userData.role,
+      name: userData?.name,
+      email: userData?.email,
+      password: userData?.password,
+      role: userData?.role,
     });
 
     res.status(201).json({
@@ -137,7 +137,7 @@ export const userLoginPost = async (
       return;
     }
 
-    const isPasswordMatch = await bcrypt.compare(password, userData.password);
+    const isPasswordMatch = await bcrypt.compare(password, userData?.password);
     if (!isPasswordMatch) {
       res.status(400).json({ message: "Invalid email or password" });
       return;
@@ -165,10 +165,10 @@ export const userLoginPost = async (
       message: "Login successful",
       accessToken,
       user: {
-        id: userData._id,
-        email: userData.email,
-        name: userData.name,
-        role: userData.role,
+        id: userData?._id,
+        email: userData?.email,
+        name: userData?.name,
+        role: userData?.role,
       },
     });
   } catch (error: unknown) {
