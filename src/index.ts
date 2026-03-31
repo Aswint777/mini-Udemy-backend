@@ -16,16 +16,20 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",                    
+      "http://localhost:5173",
       "http://localhost:3000",
-      "https://mini-udemy-frontend-2tikcsrvp-aswint777s-projects.vercel.app"   
+      "https://mini-udemy-frontend-2tikcsrvp-aswint777s-projects.vercel.app",
+      "https://mini-udemy-frontend-git-main-aswint777s-projects.vercel.app",
+      "https://mini-udemy-frontend-nu.vercel.app",
+      /^https:\/\/.*\.vercel\.app$/,           
     ],
-    credentials: true,          
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
   })
 );
-
 
 connectDB();
 
